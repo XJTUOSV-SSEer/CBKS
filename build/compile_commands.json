@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/zhg/code/CBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/./include -g -o CMakeFiles/mytest.dir/src/test_func.cpp.o -c /home/zhg/code/CBKS/src/test_func.cpp",
+  "file": "/home/zhg/code/CBKS/src/test_func.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/./include -g -o CMakeFiles/mytest.dir/src/BloomFilter.cpp.o -c /home/zhg/code/CBKS/src/BloomFilter.cpp",
+  "file": "/home/zhg/code/CBKS/src/BloomFilter.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/./include -g -o CMakeFiles/mytest.dir/src/MurmurHash3.cpp.o -c /home/zhg/code/CBKS/src/MurmurHash3.cpp",
+  "file": "/home/zhg/code/CBKS/src/MurmurHash3.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/./include -g -o CMakeFiles/mytest.dir/src/CSC_BloomFilter.cpp.o -c /home/zhg/code/CBKS/src/CSC_BloomFilter.cpp",
+  "file": "/home/zhg/code/CBKS/src/CSC_BloomFilter.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/./include -g -o CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.o -c /home/zhg/code/CBKS/src/Crypto_Primitives.cpp",
+  "file": "/home/zhg/code/CBKS/src/Crypto_Primitives.cpp"
+}
+]
