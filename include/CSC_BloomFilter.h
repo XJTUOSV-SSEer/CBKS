@@ -51,6 +51,23 @@ public:
     */
     int get_len_of_bf();
 
+
+    /*
+        获取num_of_partitions
+    */
+    int get_num_of_partitions();
+
+
+    /*
+        获取num_of_hashs
+    */
+    int get_num_of_hashs();
+
+
+    /*
+        计算h_i(w)，即用第i个哈希函数、w作为参数求出的的值
+    */
+    uint32_t get_h_i_w(uint8_t i,std::string w);
 private:
     // 哈希函数族中哈希函数的数量
     uint8_t num_of_hashs;
@@ -105,10 +122,7 @@ private:
     uint16_t get_g_r_id(uint8_t r,std::string id);
 
 
-    /*
-        计算h_i(w)，即第i个哈希函数求出的w的基准位置
-    */
-    uint32_t get_h_i_w(uint8_t i,std::string w);
+
 };
 
 #endif

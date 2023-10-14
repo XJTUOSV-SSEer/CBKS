@@ -40,6 +40,8 @@ std::vector<int> CSC_BloomFilter::add(std::string w,std::string id){
             csc_bf[r][(h_i_w+g_r_id)%len_of_bf]=true;
         }
     }
+
+    return v;
 }
 
 
@@ -103,14 +105,20 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
 }
 
 int CSC_BloomFilter::get_num_of_repetitions(){
-    return num_of_hashs;
+    return num_of_repetitions;
 }
 
 int CSC_BloomFilter::get_len_of_bf(){
     return len_of_bf;
 }
 
+int CSC_BloomFilter::get_num_of_partitions(){
+    return num_of_partitions;
+}
 
+int CSC_BloomFilter::get_num_of_hashs(){
+    return num_of_hashs;
+}
 
 std::array<uint64_t, 2> CSC_BloomFilter::hash(const uint8_t *data, std::size_t len)
 {

@@ -117,13 +117,14 @@ int main(void)
     // 测试字符串xor
     // test_string_xor();
 
-    char s[4];
-    s[0]='t';
-    s[1]='e';
-    s[2]='s';
-    s[3]='t';
-    std::string str=std::string(s);
-    std::cout<<str.length()<<std::endl;
+
+    std::set<int> s1,s2,s3;
+    s1.insert(1);
+    s1.insert(2);
+    s2.insert(2);
+    s2.insert(3);
+    std::set_union(s1.begin(),s1.end(),s2.begin(),s2.end(),std::insert_iterator<std::set<int>>(s1,s1.begin()));
+    std::cout<<s1.size()<<std::endl;
 
     return 0;
 }

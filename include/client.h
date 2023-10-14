@@ -2,6 +2,7 @@
 #define CLIENT_H
 #include "./CSC_BloomFilter.h"
 #include "./data_type.h"
+#include "./msg.h"
 
 
 class client{
@@ -21,18 +22,14 @@ public:
             一个二维数组。等价于键为一个pair<int r,int b>，r为repetition的序号，b为分区的序号；
             值为r中分区值为b的文件id的集合
     */
-    std::vector<std::vector<std::set<std::string>>> insert_data(
-        std::set<std::pair<std::string,std::string>> inverted_index);
+    struct build_msg build(std::set<std::pair<std::string,std::string>> inverted_index);    
 
+ 
     /*
-        build
+        search，根据关键字计算得到对应的查询请求
     */
+    struct request_msg search(std::string w);
 
-
-
-    /*
-        search
-    */
 private:
     // 一个CSC-BF对象
     CSC_BloomFilter bf;
@@ -40,6 +37,9 @@ private:
     std::string msk;
     // 对称加密的iv
     std::string iv;
+
+
+    
 };
 
 
