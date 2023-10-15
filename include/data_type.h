@@ -5,11 +5,9 @@
 #include <vector>
 #include <algorithm>
 #include <array>
-#include <list>
 #include <string>
 #include <set>
-#include <tuple>
-#include <utility>
+#include <cstring>
 #include <unordered_map>
 
 /* for all sources except OCALL/ECALL */

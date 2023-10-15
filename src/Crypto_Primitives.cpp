@@ -83,16 +83,17 @@ int Crypto_Primitives::sym_decrypt(unsigned char *ciphertext, int ciphertext_len
 
     /*
      * Finalise the decryption. Further plaintext bytes may be written at
-     * this stage.
+     * this stage. 
+     * 对于输入恰好是16字节的整数的情况，无需进行这一步
      */
-    if(1 != EVP_DecryptFinal_ex(ctx, plaintext + len, &len))
+    if(ciphertext_len%16!=0 && 1 != EVP_DecryptFinal_ex(ctx, plaintext + len, &len))
         std::cout<<"decrypt final failed"<<std::endl;
     plaintext_len += len;
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
 
-    return plaintext_len;    
+    return plaintext_len;
 }
 
 
@@ -101,22 +102,33 @@ std::string Crypto_Primitives::get_rand(int num){
     int rc = RAND_bytes((unsigned char*)buf, num);
     if(rc != 1) 
         std::cout<<"generate RAND_bytes failed"<<std::endl;
-    return std::string(buf);
+    return std::string(buf,num);
 }
 
 
 void Crypto_Primitives::get_prf(unsigned char* k,unsigned char* data,int len, unsigned char* v){
     // 使用一个固定的16字节IV
-    std::string s1="XJTU-OSV-PRF-IV";
-    s1.resize(16);
+    std::string s1="XJTU-OSV-PRF--IV";
+    // s1.resize(16);
 
     // 调用加密算法
-    sym_encrypt(data,len,k,(unsigned char*)(s1.c_str()),v);
+    char c[16];
+    string2char(s1,c);
+    sym_encrypt(data,len,k,(unsigned char*)c,v);
 }
 
 
 void Crypto_Primitives::string_xor(char* a,char* b,int len,char* res){
     for(int i=0;i<len;i++){
         res[i]=(a[i]) xor (b[i]);
+    }
+}
+
+
+
+void Crypto_Primitives::string2char(std::string str,char* c){
+    int len=str.length();
+    for(int i=0;i<len;i++){
+        c[i]=str[i];
     }
 }

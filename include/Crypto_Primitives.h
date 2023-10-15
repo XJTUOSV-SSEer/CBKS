@@ -1,6 +1,7 @@
 #ifndef CRYPTO_PRIMITIVES_H
 #define CRYPTO_PRIMITIVES_H
 #include <string>
+#include <cstring>
 
 /*
     密码学原语实现
@@ -66,6 +67,18 @@ public:
         res：结果，需要预先分配空间
     */
     static void string_xor(char* a,char* b,int len,char* res);
+
+
+
+
+    /*
+        用于密码学的std::string转换为char[]的方法
+        c_str存在问题：若string中某一位为\0，那么转换时就会在这里截断，而在对得到的字节数组进行处理就会内存泄漏
+
+        param:
+            c:需要预先分配内存
+    */
+    static void string2char(std::string str,char* c);
 };
 
 

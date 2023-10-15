@@ -55,7 +55,11 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
     std::vector<std::vector<struct cipher_text>>& vec=res.bf_enc;
 
     for(int r=0;r<num_of_repetitions;r++){
+        // vec分配空间
+        vec.push_back(std::vector<struct cipher_text>());
         for(int i=0;i<len_of_bf;i++){
+            struct cipher_text tmp;
+            vec[r].push_back(tmp);
             // concat BF[i] and i-->BF[i]||i，每个部分16字节（需要填充），连接后为32字节
             // s1，s2分别储存BF[i]和i的字节形式
             std::string s1="";
@@ -79,15 +83,19 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
             // 计算d0
             // 计算PRF
             std::string data=s1.append(s2);
+            char data_bytes[ALPHA_SIZE];
+            Crypto_Primitives::string2char(data,data_bytes);
             char prf_value[ALPHA_SIZE];
-            Crypto_Primitives::get_prf(msk,(unsigned char*)((data).c_str()),data.length(),
+            Crypto_Primitives::get_prf(msk,(unsigned char*)data_bytes,data.length(),
             (unsigned char*) prf_value);
             // 生成一个32字节的随机数作为alpha
             std::string alpha=(Crypto_Primitives::get_rand(ALPHA_SIZE));
+            char alpha_bytes[ALPHA_SIZE];
+            Crypto_Primitives::string2char(alpha,alpha_bytes);
             // 异或
             char xor_value[ALPHA_SIZE];
-            Crypto_Primitives::string_xor(prf_value,(char*)(alpha.c_str()),ALPHA_SIZE,xor_value);
-            (vec[r][i]).d0=std::string(xor_value);
+            Crypto_Primitives::string_xor(prf_value,(char*)alpha_bytes,ALPHA_SIZE,xor_value);
+            (vec[r][i]).d0=std::string(xor_value,ALPHA_SIZE);
 
             // 计算d1
             // 加密的数据为"0000000000000000"
@@ -96,8 +104,8 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
             fill(plain_text.begin(),plain_text.end(),'0');
             char cipher_text[PLAINTEXT_SIZE];
             Crypto_Primitives::sym_encrypt((unsigned char*)(plain_text.c_str()),plain_text.length(),
-            (unsigned char*)(alpha.c_str()),iv,(unsigned char*)cipher_text);
-            (vec[r][i]).d1=std::string(cipher_text);
+            (unsigned char*)alpha_bytes,iv,(unsigned char*)cipher_text);
+            (vec[r][i]).d1=std::string(cipher_text,PLAINTEXT_SIZE);
         }
     }
 

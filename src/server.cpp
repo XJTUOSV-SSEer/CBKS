@@ -13,6 +13,12 @@ server::server(struct build_msg m){
 
 struct respond_msg server::search(struct request_msg req){
     std::vector<std::vector<std::pair<int,std::vector<std::string>>>>& trapdoor=req.trapdoor;
+
+
+    char iv_bytes[IV_SIZE];
+    Crypto_Primitives::string2char(iv,iv_bytes);
+    
+
     // result储存最终的查询结果
     std::set<std::string> result;
     for(int r=0;r<num_of_repetitions;r++){
@@ -25,26 +31,33 @@ struct respond_msg server::search(struct request_msg req){
         for(int k=0;k<(trapdoor[r]).size();k++){
             std::pair<int,std::vector<std::string>> p=trapdoor[r][k];
             int h_w=p.first;
-            std::vector<std::string> prfs=p.second;
+            std::vector<std::string> prfs_value=p.second;
 
             // 当前哈希函数对应的set
             std::set<int> set_hash;
 
             // 每个分区
-            for(int i=0;i<prfs.size();i++){
+            for(int i=0;i<prfs_value.size();i++){
                 // 密文
                 struct cipher_text ct=(bf_enc.bf_enc)[r][(h_w+i)%len_of_bf];
                 // 计算alpha
                 char alpha[ALPHA_SIZE];
-                Crypto_Primitives::string_xor((char*)(ct.d0).c_str(),(char*)(prfs[i]).c_str(),ALPHA_SIZE,alpha);
+                char d0_bytes[CONCAT_SIZE];
+                Crypto_Primitives::string2char(ct.d0,d0_bytes);
+                char prfs_bytes[ALPHA_SIZE];
+                Crypto_Primitives::string2char(prfs_value[i],prfs_bytes);
+                Crypto_Primitives::string_xor((char*)d0_bytes,(char*)prfs_bytes,ALPHA_SIZE,alpha);
                 // 使用alpha解密，判断结果是否为"0000000000000000"
                 char plain_text[PLAINTEXT_SIZE];
-                Crypto_Primitives::sym_decrypt((unsigned char*)(ct.d1).c_str(),PLAINTEXT_SIZE,(unsigned char*) alpha,
-                (unsigned char*)(iv.c_str()),(unsigned char*)plain_text);
+                char d1_bytes[CONCAT_SIZE];
+                Crypto_Primitives::string2char(ct.d1,d1_bytes);
+
+                Crypto_Primitives::sym_decrypt((unsigned char*)d1_bytes,PLAINTEXT_SIZE,(unsigned char*) alpha,
+                (unsigned char*)iv_bytes,(unsigned char*)plain_text);
                 std::string zero_str="";    // 全0
                 zero_str.resize(PLAINTEXT_SIZE);
                 fill(zero_str.begin(),zero_str.end(),'0');
-                if(std::string(plain_text)==zero_str){
+                if(std::string(plain_text,PLAINTEXT_SIZE)==zero_str){
                     // 将分区i加入
                     set_hash.insert(i);
                 }

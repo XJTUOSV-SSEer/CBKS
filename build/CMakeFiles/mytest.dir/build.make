@@ -69,19 +69,19 @@ include CMakeFiles/mytest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/mytest.dir/flags.make
 
-CMakeFiles/mytest.dir/src/test_func.cpp.o: CMakeFiles/mytest.dir/flags.make
-CMakeFiles/mytest.dir/src/test_func.cpp.o: /home/zhg/code/CBKS/src/test_func.cpp
-CMakeFiles/mytest.dir/src/test_func.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mytest.dir/src/test_func.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/test_func.cpp.o -MF CMakeFiles/mytest.dir/src/test_func.cpp.o.d -o CMakeFiles/mytest.dir/src/test_func.cpp.o -c /home/zhg/code/CBKS/src/test_func.cpp
+CMakeFiles/mytest.dir/src/main.cpp.o: CMakeFiles/mytest.dir/flags.make
+CMakeFiles/mytest.dir/src/main.cpp.o: /home/zhg/code/CBKS/src/main.cpp
+CMakeFiles/mytest.dir/src/main.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/mytest.dir/src/main.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/main.cpp.o -MF CMakeFiles/mytest.dir/src/main.cpp.o.d -o CMakeFiles/mytest.dir/src/main.cpp.o -c /home/zhg/code/CBKS/src/main.cpp
 
-CMakeFiles/mytest.dir/src/test_func.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/test_func.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/test_func.cpp > CMakeFiles/mytest.dir/src/test_func.cpp.i
+CMakeFiles/mytest.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/main.cpp > CMakeFiles/mytest.dir/src/main.cpp.i
 
-CMakeFiles/mytest.dir/src/test_func.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/test_func.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/test_func.cpp -o CMakeFiles/mytest.dir/src/test_func.cpp.s
+CMakeFiles/mytest.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/main.cpp -o CMakeFiles/mytest.dir/src/main.cpp.s
 
 CMakeFiles/mytest.dir/src/BloomFilter.cpp.o: CMakeFiles/mytest.dir/flags.make
 CMakeFiles/mytest.dir/src/BloomFilter.cpp.o: /home/zhg/code/CBKS/src/BloomFilter.cpp
@@ -139,25 +139,89 @@ CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/Crypto_Primitives.cpp -o CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.s
 
+CMakeFiles/mytest.dir/src/client.cpp.o: CMakeFiles/mytest.dir/flags.make
+CMakeFiles/mytest.dir/src/client.cpp.o: /home/zhg/code/CBKS/src/client.cpp
+CMakeFiles/mytest.dir/src/client.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/mytest.dir/src/client.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/client.cpp.o -MF CMakeFiles/mytest.dir/src/client.cpp.o.d -o CMakeFiles/mytest.dir/src/client.cpp.o -c /home/zhg/code/CBKS/src/client.cpp
+
+CMakeFiles/mytest.dir/src/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/client.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/client.cpp > CMakeFiles/mytest.dir/src/client.cpp.i
+
+CMakeFiles/mytest.dir/src/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/client.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/client.cpp -o CMakeFiles/mytest.dir/src/client.cpp.s
+
+CMakeFiles/mytest.dir/src/server.cpp.o: CMakeFiles/mytest.dir/flags.make
+CMakeFiles/mytest.dir/src/server.cpp.o: /home/zhg/code/CBKS/src/server.cpp
+CMakeFiles/mytest.dir/src/server.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/mytest.dir/src/server.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/server.cpp.o -MF CMakeFiles/mytest.dir/src/server.cpp.o.d -o CMakeFiles/mytest.dir/src/server.cpp.o -c /home/zhg/code/CBKS/src/server.cpp
+
+CMakeFiles/mytest.dir/src/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/server.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/server.cpp > CMakeFiles/mytest.dir/src/server.cpp.i
+
+CMakeFiles/mytest.dir/src/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/server.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/server.cpp -o CMakeFiles/mytest.dir/src/server.cpp.s
+
+CMakeFiles/mytest.dir/src/BF_Enc.cpp.o: CMakeFiles/mytest.dir/flags.make
+CMakeFiles/mytest.dir/src/BF_Enc.cpp.o: /home/zhg/code/CBKS/src/BF_Enc.cpp
+CMakeFiles/mytest.dir/src/BF_Enc.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/mytest.dir/src/BF_Enc.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/BF_Enc.cpp.o -MF CMakeFiles/mytest.dir/src/BF_Enc.cpp.o.d -o CMakeFiles/mytest.dir/src/BF_Enc.cpp.o -c /home/zhg/code/CBKS/src/BF_Enc.cpp
+
+CMakeFiles/mytest.dir/src/BF_Enc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/BF_Enc.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/BF_Enc.cpp > CMakeFiles/mytest.dir/src/BF_Enc.cpp.i
+
+CMakeFiles/mytest.dir/src/BF_Enc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/BF_Enc.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/BF_Enc.cpp -o CMakeFiles/mytest.dir/src/BF_Enc.cpp.s
+
+CMakeFiles/mytest.dir/src/load_data.cpp.o: CMakeFiles/mytest.dir/flags.make
+CMakeFiles/mytest.dir/src/load_data.cpp.o: /home/zhg/code/CBKS/src/load_data.cpp
+CMakeFiles/mytest.dir/src/load_data.cpp.o: CMakeFiles/mytest.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/mytest.dir/src/load_data.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/mytest.dir/src/load_data.cpp.o -MF CMakeFiles/mytest.dir/src/load_data.cpp.o.d -o CMakeFiles/mytest.dir/src/load_data.cpp.o -c /home/zhg/code/CBKS/src/load_data.cpp
+
+CMakeFiles/mytest.dir/src/load_data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mytest.dir/src/load_data.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhg/code/CBKS/src/load_data.cpp > CMakeFiles/mytest.dir/src/load_data.cpp.i
+
+CMakeFiles/mytest.dir/src/load_data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mytest.dir/src/load_data.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhg/code/CBKS/src/load_data.cpp -o CMakeFiles/mytest.dir/src/load_data.cpp.s
+
 # Object files for target mytest
 mytest_OBJECTS = \
-"CMakeFiles/mytest.dir/src/test_func.cpp.o" \
+"CMakeFiles/mytest.dir/src/main.cpp.o" \
 "CMakeFiles/mytest.dir/src/BloomFilter.cpp.o" \
 "CMakeFiles/mytest.dir/src/MurmurHash3.cpp.o" \
 "CMakeFiles/mytest.dir/src/CSC_BloomFilter.cpp.o" \
-"CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.o"
+"CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.o" \
+"CMakeFiles/mytest.dir/src/client.cpp.o" \
+"CMakeFiles/mytest.dir/src/server.cpp.o" \
+"CMakeFiles/mytest.dir/src/BF_Enc.cpp.o" \
+"CMakeFiles/mytest.dir/src/load_data.cpp.o"
 
 # External object files for target mytest
 mytest_EXTERNAL_OBJECTS =
 
-mytest: CMakeFiles/mytest.dir/src/test_func.cpp.o
+mytest: CMakeFiles/mytest.dir/src/main.cpp.o
 mytest: CMakeFiles/mytest.dir/src/BloomFilter.cpp.o
 mytest: CMakeFiles/mytest.dir/src/MurmurHash3.cpp.o
 mytest: CMakeFiles/mytest.dir/src/CSC_BloomFilter.cpp.o
 mytest: CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.o
+mytest: CMakeFiles/mytest.dir/src/client.cpp.o
+mytest: CMakeFiles/mytest.dir/src/server.cpp.o
+mytest: CMakeFiles/mytest.dir/src/BF_Enc.cpp.o
+mytest: CMakeFiles/mytest.dir/src/load_data.cpp.o
 mytest: CMakeFiles/mytest.dir/build.make
 mytest: CMakeFiles/mytest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable mytest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhg/code/CBKS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable mytest"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mytest.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

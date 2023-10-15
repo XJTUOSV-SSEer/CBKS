@@ -5,6 +5,8 @@
 #include "../include/BloomFilter.h"
 #include "../include/CSC_BloomFilter.h"
 #include "../include/Crypto_Primitives.h"
+#include "../include/client.h"
+#include "../include/load_data.h"
 
 
 bool test_BloomFilter()
@@ -118,13 +120,23 @@ int main(void)
     // test_string_xor();
 
 
-    std::set<int> s1,s2,s3;
-    s1.insert(1);
-    s1.insert(2);
-    s2.insert(2);
-    s2.insert(3);
-    std::set_union(s1.begin(),s1.end(),s2.begin(),s2.end(),std::insert_iterator<std::set<int>>(s1,s1.begin()));
-    std::cout<<s1.size()<<std::endl;
+    // std::set<int> s1,s2,s3;
+    // s1.insert(1);
+    // s1.insert(2);
+    // s2.insert(2);
+    // s2.insert(3);
+    // std::set_union(s1.begin(),s1.end(),s2.begin(),s2.end(),std::insert_iterator<std::set<int>>(s1,s1.begin()));
+    // std::cout<<s1.size()<<std::endl;
+    // std::vector<std::string> prfs;
+    // prfs.push_back("123");
+    // prfs.push_back("456");
+
+    std::string s1="123456";
+    s1[3]='\0';
+    const char* s=s1.c_str();
+
+    // std::string s2="456";
+
 
     return 0;
 }

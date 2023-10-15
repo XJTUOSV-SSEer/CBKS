@@ -523,6 +523,30 @@ mytest/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/build
 .PHONY : mytest/fast
 
+src/BF_Enc.o: src/BF_Enc.cpp.o
+.PHONY : src/BF_Enc.o
+
+# target to build an object file
+src/BF_Enc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/BF_Enc.cpp.o
+.PHONY : src/BF_Enc.cpp.o
+
+src/BF_Enc.i: src/BF_Enc.cpp.i
+.PHONY : src/BF_Enc.i
+
+# target to preprocess a source file
+src/BF_Enc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/BF_Enc.cpp.i
+.PHONY : src/BF_Enc.cpp.i
+
+src/BF_Enc.s: src/BF_Enc.cpp.s
+.PHONY : src/BF_Enc.s
+
+# target to generate assembly for a file
+src/BF_Enc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/BF_Enc.cpp.s
+.PHONY : src/BF_Enc.cpp.s
+
 src/BloomFilter.o: src/BloomFilter.cpp.o
 .PHONY : src/BloomFilter.o
 
@@ -619,29 +643,101 @@ src/MurmurHash3.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/MurmurHash3.cpp.s
 .PHONY : src/MurmurHash3.cpp.s
 
-src/test_func.o: src/test_func.cpp.o
-.PHONY : src/test_func.o
+src/client.o: src/client.cpp.o
+.PHONY : src/client.o
 
 # target to build an object file
-src/test_func.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/test_func.cpp.o
-.PHONY : src/test_func.cpp.o
+src/client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/client.cpp.o
+.PHONY : src/client.cpp.o
 
-src/test_func.i: src/test_func.cpp.i
-.PHONY : src/test_func.i
+src/client.i: src/client.cpp.i
+.PHONY : src/client.i
 
 # target to preprocess a source file
-src/test_func.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/test_func.cpp.i
-.PHONY : src/test_func.cpp.i
+src/client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/client.cpp.i
+.PHONY : src/client.cpp.i
 
-src/test_func.s: src/test_func.cpp.s
-.PHONY : src/test_func.s
+src/client.s: src/client.cpp.s
+.PHONY : src/client.s
 
 # target to generate assembly for a file
-src/test_func.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/test_func.cpp.s
-.PHONY : src/test_func.cpp.s
+src/client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/client.cpp.s
+.PHONY : src/client.cpp.s
+
+src/load_data.o: src/load_data.cpp.o
+.PHONY : src/load_data.o
+
+# target to build an object file
+src/load_data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/load_data.cpp.o
+.PHONY : src/load_data.cpp.o
+
+src/load_data.i: src/load_data.cpp.i
+.PHONY : src/load_data.i
+
+# target to preprocess a source file
+src/load_data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/load_data.cpp.i
+.PHONY : src/load_data.cpp.i
+
+src/load_data.s: src/load_data.cpp.s
+.PHONY : src/load_data.s
+
+# target to generate assembly for a file
+src/load_data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/load_data.cpp.s
+.PHONY : src/load_data.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/server.o: src/server.cpp.o
+.PHONY : src/server.o
+
+# target to build an object file
+src/server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/server.cpp.o
+.PHONY : src/server.cpp.o
+
+src/server.i: src/server.cpp.i
+.PHONY : src/server.i
+
+# target to preprocess a source file
+src/server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/server.cpp.i
+.PHONY : src/server.cpp.i
+
+src/server.s: src/server.cpp.s
+.PHONY : src/server.s
+
+# target to generate assembly for a file
+src/server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mytest.dir/build.make CMakeFiles/mytest.dir/src/server.cpp.s
+.PHONY : src/server.cpp.s
 
 # Help Target
 help:
@@ -683,6 +779,9 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... mytest"
+	@echo "... src/BF_Enc.o"
+	@echo "... src/BF_Enc.i"
+	@echo "... src/BF_Enc.s"
 	@echo "... src/BloomFilter.o"
 	@echo "... src/BloomFilter.i"
 	@echo "... src/BloomFilter.s"
@@ -695,9 +794,18 @@ help:
 	@echo "... src/MurmurHash3.o"
 	@echo "... src/MurmurHash3.i"
 	@echo "... src/MurmurHash3.s"
-	@echo "... src/test_func.o"
-	@echo "... src/test_func.i"
-	@echo "... src/test_func.s"
+	@echo "... src/client.o"
+	@echo "... src/client.i"
+	@echo "... src/client.s"
+	@echo "... src/load_data.o"
+	@echo "... src/load_data.i"
+	@echo "... src/load_data.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/server.o"
+	@echo "... src/server.i"
+	@echo "... src/server.s"
 .PHONY : help
 
 

@@ -7,11 +7,11 @@ client::client(uint8_t num_of_hashs,
                uint8_t num_of_repetitions) : bf(num_of_hashs, num_of_partitions, len_of_bf, num_of_repetitions)
 {
     // 随机生成主密钥
-    msk="XJTU-OSV-MSK0000000000000000000";
+    msk="XJTU-OSV-MSK00000000000000000000";
     // msk = Crypto_Primitives::get_rand(MSK_SIZE);
 
     // 固定的IV
-    iv="XJTU-OSV-IV1234";
+    iv="XJTU-OSV-IV12345";
     // iv = Crypto_Primitives::get_rand(IV_SIZE);
 }
 
@@ -22,7 +22,7 @@ struct build_msg client::build(std::set<std::pair<std::string, std::string>> inv
     // 预留空间
     for(int i=0;i<bf.get_num_of_repetitions();i++){
         std::vector<std::set<std::string>> tmp;
-        tmp.resize(bf.get_len_of_bf());
+        tmp.resize(bf.get_num_of_partitions());
         tab.push_back(tmp);
     }
 
@@ -45,7 +45,11 @@ struct build_msg client::build(std::set<std::pair<std::string, std::string>> inv
 
 
     // 加密CSC-BF
-    BF_Enc bf_enc=bf.SHVE((unsigned char*)(msk.c_str()),(unsigned char*)(iv.c_str()));
+    char msk_bytes[MSK_SIZE];
+    Crypto_Primitives::string2char(msk,msk_bytes);
+    char iv_bytes[IV_SIZE];
+    Crypto_Primitives::string2char(iv,iv_bytes);
+    BF_Enc bf_enc=bf.SHVE((unsigned char*)msk_bytes,(unsigned char*)iv_bytes);
 
     // 创建build_msg结构体，完成数据包
     struct build_msg msg;
@@ -63,6 +67,7 @@ struct build_msg client::build(std::set<std::pair<std::string, std::string>> inv
 
 struct request_msg client::search(std::string w){
     struct request_msg msg;
+    // std::vector<std::vector<std::pair<int,std::vector<std::string>>>> trapdoor;
     std::vector<std::vector<std::pair<int,std::vector<std::string>>>>& trapdoor=msg.trapdoor;
 
     // 生成陷门
@@ -74,7 +79,7 @@ struct request_msg client::search(std::string w){
             // 计算h(w)，即基准点
             int h_w=bf.get_h_i_w(k,w);
             // 储存b个PRF
-            std::vector<std::string> prfs;
+            std::vector<std::string> prfs_value;
             // 从h_w开始生成后b个位置的PRF
             for(int i=0;i<bf.get_num_of_partitions();i++){
                 // s1="0000000000000001"
@@ -93,14 +98,18 @@ struct request_msg client::search(std::string w){
 
                 // 为PRF值分配空间
                 char v[ALPHA_SIZE];
-                Crypto_Primitives::get_prf((unsigned char*)(msk.c_str()),
-                (unsigned char*)(data.c_str()),data.length(),(unsigned char*)v);
+                char msk_bytes[MSK_SIZE];
+                Crypto_Primitives::string2char(msk,msk_bytes);
+                char data_bytes[ALPHA_SIZE];
+                Crypto_Primitives::string2char(data,data_bytes);
+                Crypto_Primitives::get_prf((unsigned char*)msk_bytes,
+                (unsigned char*)data_bytes,data.length(),(unsigned char*)v);
 
-                // 将PRF加入vector prfs
-                prfs.push_back(std::string(v));
+                // 将PRF加入vector prfs_value
+                prfs_value.push_back(std::string(v,ALPHA_SIZE));
             }
             // 生成pair
-            std::pair<int,std::vector<std::string>> p=std::make_pair(h_w,prfs);
+            std::pair<int,std::vector<std::string>> p=std::make_pair(h_w,prfs_value);
             // 加入vec_r
             vec_r.push_back(p);
 
@@ -110,5 +119,6 @@ struct request_msg client::search(std::string w){
         trapdoor.push_back(vec_r);
     }
 
+    // msg.trapdoor=trapdoor;
     return msg;
 }
