@@ -43,5 +43,6 @@
         "typeinfo": "cpp",
         "set": "cpp",
         "cinttypes": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/zhg/code/CBKS/PBKS"
 }

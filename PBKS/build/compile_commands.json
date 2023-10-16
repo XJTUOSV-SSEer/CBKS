@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/main.cpp.o -c /home/zhg/code/CBKS/PBKS/src/main.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/main.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/BloomFilter.cpp.o -c /home/zhg/code/CBKS/PBKS/src/BloomFilter.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/BloomFilter.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/MurmurHash3.cpp.o -c /home/zhg/code/CBKS/PBKS/src/MurmurHash3.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/MurmurHash3.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/CSC_BloomFilter.cpp.o -c /home/zhg/code/CBKS/PBKS/src/CSC_BloomFilter.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/CSC_BloomFilter.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/Crypto_Primitives.cpp.o -c /home/zhg/code/CBKS/PBKS/src/Crypto_Primitives.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/Crypto_Primitives.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/client.cpp.o -c /home/zhg/code/CBKS/PBKS/src/client.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/client.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/server.cpp.o -c /home/zhg/code/CBKS/PBKS/src/server.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/server.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/BF_Enc.cpp.o -c /home/zhg/code/CBKS/PBKS/src/BF_Enc.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/BF_Enc.cpp"
+},
+{
+  "directory": "/home/zhg/code/CBKS/PBKS/build",
+  "command": "/usr/bin/g++  -I/home/zhg/code/CBKS/PBKS/./include -g -o CMakeFiles/mytest.dir/src/load_data.cpp.o -c /home/zhg/code/CBKS/PBKS/src/load_data.cpp",
+  "file": "/home/zhg/code/CBKS/PBKS/src/load_data.cpp"
+}
+]
