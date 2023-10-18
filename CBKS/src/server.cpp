@@ -1,5 +1,6 @@
 #include "../include/server.h"
 #include "../include/Crypto_Primitives.h"
+#include "../include/CPRF.h"
 
 
 server::server(struct build_msg m){
@@ -12,7 +13,7 @@ server::server(struct build_msg m){
 
 
 struct respond_msg server::search(struct request_msg req){
-    std::vector<std::vector<std::pair<int,std::vector<std::string>>>>& trapdoor=req.trapdoor;
+    std::vector<int>& trapdoor=req.trapdoor;
 
 
     char iv_bytes[IV_SIZE];
@@ -28,28 +29,45 @@ struct respond_msg server::search(struct request_msg req){
         std::set<int> set_repetition;
 
         // 每个哈希函数
-        for(int k=0;k<(trapdoor[r]).size();k++){
-            std::pair<int,std::vector<std::string>> p=trapdoor[r][k];
-            int h_w=p.first;
-            std::vector<std::string> prfs_value=p.second;
+        for(int k=0;k<trapdoor.size();k++){
+            int h_w=trapdoor[k];
 
             // 当前哈希函数对应的set
             std::set<int> set_hash;
 
             // 每个分区
-            for(int i=0;i<prfs_value.size();i++){
+            for(int i=0;i<req.num_of_partitions;i++){
                 // 密文
                 struct cipher_text ct=(bf_enc.bf_enc)[r][(h_w+i)%len_of_bf];
+
+                // 根据token生成CPRF(msk,1||pos)
+                std::string token=std::string((char*)req.token,TOKEN_SIZE);
+                char suffix[CONCAT_SIZE];
+                std::string _s=std::to_string((i+h_w)%len_of_bf);
+                std::string pos=std::string();
+                pos.resize(CONCAT_SIZE-_s.length());
+                std::fill(pos.begin(),pos.end(),'0');
+                pos.append(_s);
+
+                Crypto_Primitives::string2char(pos,suffix);
+
+                // 储存cprf值
+                char cprf_value[PRF_SIZE];
+
+                CPRF::eval(token, (unsigned char*)suffix, CONCAT_SIZE,(unsigned char*)cprf_value);
+
                 // 计算alpha
                 char alpha[ALPHA_SIZE];
+                // char d0_bytes[CONCAT_SIZE];
                 char d0_bytes[ALPHA_SIZE];
                 Crypto_Primitives::string2char(ct.d0,d0_bytes);
-                char prfs_bytes[ALPHA_SIZE];
-                Crypto_Primitives::string2char(prfs_value[i],prfs_bytes);
-                Crypto_Primitives::string_xor((char*)d0_bytes,(char*)prfs_bytes,ALPHA_SIZE,alpha);
+                // char cprf_bytes[PRF_SIZE];
+                // Crypto_Primitives::string2char(std::string(),cprf_bytes);
+                Crypto_Primitives::string_xor((char*)d0_bytes,cprf_value,ALPHA_SIZE,alpha);
+                
                 // 使用alpha解密，判断结果是否为"0000000000000000"
                 char plain_text[PLAINTEXT_SIZE];
-                char d1_bytes[PLAINTEXT_SIZE];
+                char d1_bytes[CONCAT_SIZE];
                 Crypto_Primitives::string2char(ct.d1,d1_bytes);
 
                 Crypto_Primitives::sym_decrypt((unsigned char*)d1_bytes,PLAINTEXT_SIZE,(unsigned char*) alpha,
