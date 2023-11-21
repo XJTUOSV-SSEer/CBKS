@@ -27,3 +27,22 @@ std::set<std::pair<std::string,std::string>> load_data::get_small_dataset(){
     }
     return res;
 }
+
+
+
+std::set<std::pair<std::string,std::string>> load_data::get_dataset(std::string filename){
+    std::set<std::pair<std::string,std::string>> dataset;
+
+    FILE* fp=fopen((char*)filename.c_str(),"r");
+    if(fp==NULL){
+        std::cout<<"open file failed"<<std::endl;
+    }
+    int w;
+    int id;
+    while(fscanf(fp,"%d %d",&w,&id)!=EOF){
+        dataset.insert(std::make_pair(std::to_string(w),std::to_string(id)));
+    }
+
+    fclose(fp);
+    return dataset;
+}

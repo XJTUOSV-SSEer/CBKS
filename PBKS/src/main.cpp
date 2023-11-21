@@ -3,8 +3,24 @@
 #include "../include/server.h"
 #include "../include/load_data.h"
 #include "../include/data_type.h"
+#include "../include/experiment.h"
 
 int main(){
+    // 实验2.1
+    double sum=0;
+    for(int i=0;i<100;i++){
+        sum+=experiment::experiment_token_gen(3,1000,1000000,5);
+    }
+    std::cout<<sum/100<<std::endl;
+
+
+    
+}
+
+
+
+
+int main_old(){
     std::vector<std::string> t;
 
     // 准备数据集
