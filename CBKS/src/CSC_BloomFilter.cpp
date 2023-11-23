@@ -22,7 +22,7 @@ CSC_BloomFilter::CSC_BloomFilter(uint8_t num_of_hashs,
 }
 
 
-std::vector<int> CSC_BloomFilter::add(std::string w,std::string id){
+std::vector<int> CSC_BloomFilter::add(std::string w,std::string id,int refresh_cnt){
     // 要返回的映射表
     std::vector<int> v;
 
@@ -37,7 +37,7 @@ std::vector<int> CSC_BloomFilter::add(std::string w,std::string id){
         // 计算关键字w对各个哈希函数的值，并进行add
         for(int i=0;i<num_of_hashs;i++){
             //h_i(w)
-            uint32_t h_i_w=get_h_i_w(i,w);
+            uint32_t h_i_w=get_h_i_w(i,w,refresh_cnt);
             csc_bf[r][(h_i_w+g_r_id)%len_of_bf]=true;
         }
     }
@@ -74,12 +74,16 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
                 s1="0";
             }
 
-            // 将i转换为字符串。若i=16，那么对应的字符串为"0000000000000016"
-            std::string s3=std::to_string(i);
-            std::string s2="";
-            s2.resize(CONCAT_SIZE-s3.length());
-            fill(s2.begin(),s2.end(),'0');
-            s2.append(s3);
+            // 将i转换为字符串。若i=16，那么将其数值转换为3字节（int低位3字节复制到一个3字节的buffer中）
+            char buf[CPRF_POS_SIZE]={0};
+            memcpy(buf,&i,CPRF_POS_SIZE);
+            std::string s2=std::string(buf,CPRF_POS_SIZE);
+
+            // std::string s3=std::to_string(i);
+            // std::string s2="";
+            // s2.resize(CONCAT_SIZE-s3.length());
+            // fill(s2.begin(),s2.end(),'0');
+            // s2.append(s3);
 
 
             // 计算d0
@@ -90,13 +94,14 @@ BF_Enc CSC_BloomFilter::SHVE(unsigned char* msk,unsigned char* iv){
             char prf_value[PRF_SIZE];
             CPRF::prf(std::string((char*)msk,MSK_SIZE),(unsigned char*)data_bytes,data.length(),
                 (unsigned char*)prf_value);
-            // Crypto_Primitives::get_prf(msk,(unsigned char*)data_bytes,data.length(),
-            // (unsigned char*) prf_value);
+
+
 
             // 生成一个32字节的随机数作为alpha
-            std::string alpha=(Crypto_Primitives::get_rand(ALPHA_SIZE));
+            // 计算alpha(即K)
+            // 固定的为每个<r,i>生成固定的K
             char alpha_bytes[ALPHA_SIZE];
-            Crypto_Primitives::string2char(alpha,alpha_bytes);
+            gen_K(r,i,alpha_bytes);
             // 异或
             char xor_value[ALPHA_SIZE];
             Crypto_Primitives::string_xor(prf_value,(char*)alpha_bytes,ALPHA_SIZE,xor_value);
@@ -171,4 +176,89 @@ uint32_t CSC_BloomFilter::get_h_i_w(uint8_t i,std::string w){
     std::array<uint64_t,2> hash_array=hash((uint8_t*)w_tmp,w.length());
     uint32_t h_i_w=hash_func(i,hash_array);
     return h_i_w;
+}
+
+
+int CSC_BloomFilter::get_h_i_w(uint8_t i,std::string w,int refresh_cnt){
+    const char* w_tmp=w.c_str();
+    std::array<uint64_t,2> hash_array=hash((uint8_t*)w_tmp,w.length());
+    uint32_t h_i_w=hash_func(i+refresh_cnt*num_of_hashs,hash_array);
+    return h_i_w;
+}
+
+
+void CSC_BloomFilter::clear(){
+    for(int r=0;r<num_of_repetitions;r++){
+        for(int i=0;i<len_of_bf;i++){
+            csc_bf[r][i]=false;
+        }
+    }
+}
+
+
+struct refresh_msg CSC_BloomFilter::get_d0(unsigned char* msk){
+    std::vector<std::vector<std::string>> d0_new;
+    for(int r=0;r<num_of_repetitions;r++){
+        std::vector<std::string> tmp_vec;
+        d0_new.push_back(tmp_vec);
+
+        for(int i=0;i<len_of_bf;i++){
+            // concat BF[i] and i-->BF[i]||i，BF[i]为1字节，i为16字节，连接后为17字节
+            // s1，s2分别储存BF[i]和i的字节形式
+            std::string s1;
+
+            // 若BF[i]==true，对应的字符串为"1"，否则为"0"
+            bool v=csc_bf[r][i];
+            if(v){
+                s1="1";
+            }
+            else{
+                s1="0";
+            }
+
+            // 将i转换为字符串。若i=16，那么将其数值转换为3字节（int低位3字节复制到一个3字节的buffer中）
+            char buf[CPRF_POS_SIZE]={0};
+            memcpy(buf,&i,CPRF_POS_SIZE);
+            std::string s2=std::string(buf,CPRF_POS_SIZE);
+
+            // 计算d0
+            // 计算CPRF
+            std::string data=s1.append(s2);
+            char data_bytes[CPRF_DATA_SIZE];
+            Crypto_Primitives::string2char(data,data_bytes);
+            char prf_value[PRF_SIZE];
+            CPRF::prf(std::string((char*)msk,MSK_SIZE),(unsigned char*)data_bytes,data.length(),
+                (unsigned char*)prf_value);
+
+
+            // 计算alpha(即K)
+            // 固定的为每个<r,i>生成固定的K
+            char alpha_bytes[ALPHA_SIZE];
+            gen_K(r,i,alpha_bytes);
+            // 异或
+            char xor_value[ALPHA_SIZE];
+            Crypto_Primitives::string_xor(prf_value,(char*)alpha_bytes,ALPHA_SIZE,xor_value);
+            std::string d0=std::string(xor_value,ALPHA_SIZE);
+
+            (d0_new[r]).push_back(d0);
+        }
+    }
+
+    struct refresh_msg s;
+    s.d0_new=d0_new;
+    return s;
+}
+
+
+void CSC_BloomFilter::gen_K(int r,int i,char* K_bytes){
+    // int len=sizeof(int)*2;
+    char buf[8];
+    memcpy(buf,&r,sizeof(int));
+    memcpy(buf+4,&i,sizeof(int));
+
+    // 求哈希
+    char digest[ALPHA_SIZE*2];
+    unsigned int digest_len;
+    Crypto_Primitives::SHA512_digest((unsigned char*)buf,sizeof(int)*2,(unsigned char*)digest,&digest_len);
+    memcpy(K_bytes,digest,ALPHA_SIZE);
 }

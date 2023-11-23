@@ -18,6 +18,12 @@ public:
     */
     struct respond_msg search(struct request_msg req);
 
+
+    /*
+        对加密的BF进行refresh，更换d0
+    */
+    void refresh(struct refresh_msg m);
+
 private:
     // BF数组的长度
     uint32_t len_of_bf;

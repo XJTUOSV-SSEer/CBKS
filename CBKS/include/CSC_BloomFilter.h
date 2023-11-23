@@ -6,6 +6,7 @@
 #include "../include/data_type.h"
 #include "./BF_Enc.h"
 #include "./Crypto_Primitives.h"
+#include "./msg.h"
 
 class CSC_BloomFilter
 {
@@ -26,10 +27,11 @@ public:
         param:
             w：关键字
             id：文件id
+            refresh_cnt
         return:
             一个vecotr，映射r->b，即说明id在第r个repetition中的分区为b
     */
-    std::vector<int> add(std::string w,std::string id);
+    std::vector<int> add(std::string w,std::string id,int refresh_cnt);
 
     
     /*
@@ -66,8 +68,31 @@ public:
 
     /*
         计算h_i(w)，即用第i个哈希函数、w作为参数求出的的值
+        
     */
     uint32_t get_h_i_w(uint8_t i,std::string w);
+
+    /*
+        计算h_i(w)，即用第i个哈希函数、w作为参数求出的的值
+        CBKS引入了refresh机制，所以第i个哈希函数的公式改为hash_a+(refresh_cnt*num_of_hashs+i)*hash_b
+    */
+    int get_h_i_w(uint8_t i,std::string w,int refresh_cnt);
+
+
+    /*
+        重置CSC-BF为全0
+    */
+    void clear();
+
+
+    /*
+        根据CSC-BF计算d0
+
+        return:
+            refresh_msg结构体
+    */
+    struct refresh_msg get_d0(unsigned char* msk);
+
 private:
     // 哈希函数族中哈希函数的数量
     uint8_t num_of_hashs;
@@ -121,6 +146,17 @@ private:
     */
     uint16_t get_g_r_id(uint8_t r,std::string id);
 
+
+    /*
+        给定CSC-BF的位置，生成对应的用于d1中对称加密的K
+        内部使用sha512
+
+        param:
+            r: 位置的repetition值
+            i: 该位置在BF中的坐标
+            K_bytes: 结果，需要预先分配空间
+    */
+    void gen_K(int r,int i,char* K_bytes);
 
 
 };

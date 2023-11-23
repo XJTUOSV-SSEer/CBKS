@@ -7,6 +7,9 @@ client::client(uint8_t num_of_hashs,
                uint32_t len_of_bf,
                uint8_t num_of_repetitions) : bf(num_of_hashs, num_of_partitions, len_of_bf, num_of_repetitions)
 {
+    // refresh计数器
+    refresh_cnt=0;
+
     // 随机生成主密钥
     msk="XJTU-OSV-MSK00000000000000000000";
     // msk = Crypto_Primitives::get_rand(MSK_SIZE);
@@ -33,7 +36,7 @@ struct build_msg client::build(std::set<std::pair<std::string, std::string>> inv
         std::string w=it->first;
         std::string id=it->second;
         // 插入CSC-BF
-        std::vector<int> v=bf.add(w,id);
+        std::vector<int> v=bf.add(w,id,refresh_cnt);
 
         // 更新哈希表
         for(int r=0;r<v.size();r++){
@@ -75,46 +78,10 @@ struct request_msg client::search(std::string w){
 
     for(int k=0;k<bf.get_num_of_hashs();k++){
         // 计算h(w)，即基准点
-        int h_w=bf.get_h_i_w(k,w);
+        int h_w=bf.get_h_i_w(k,w,refresh_cnt);
 
         // h(w) 插入trapdoor
         trapdoor.push_back(h_w);
-
-        // 储存b个PRF
-        // std::vector<std::string> prfs_value;
-        // 从h_w开始生成后b个位置的PRF
-        // for(int i=0;i<bf.get_num_of_partitions();i++){
-        //     // s1="0000000000000001"
-        //     std::string s1="";
-        //     s1.resize(CONCAT_SIZE);
-        //     fill(s1.begin(),s1.end(),'0');
-        //     s1[CONCAT_SIZE-1]='1';
-        //     // s2
-        //     std::string s2=std::to_string((h_w+i)%(bf.get_len_of_bf()));
-        //     std::string s3="";
-        //     s3.resize(CONCAT_SIZE-s2.length());
-        //     fill(s3.begin(),s3.end(),'0');
-        //     s2=s3.append(s2);
-        //     // 1||h(w)+i
-        //     std::string data=s1.append(s2);
-
-        //     // 为PRF值分配空间
-        //     char v[ALPHA_SIZE];
-        //     char msk_bytes[MSK_SIZE];
-        //     Crypto_Primitives::string2char(msk,msk_bytes);
-        //     char data_bytes[ALPHA_SIZE];
-        //     Crypto_Primitives::string2char(data,data_bytes);
-        //     Crypto_Primitives::get_prf((unsigned char*)msk_bytes,
-        //     (unsigned char*)data_bytes,data.length(),(unsigned char*)v);
-
-        //     // 将PRF加入vector prfs_value
-        //     prfs_value.push_back(std::string(v,ALPHA_SIZE));
-        // }
-        // 生成pair
-        // std::pair<int,std::vector<std::string>> p=std::make_pair(h_w,prfs_value);
-        // 加入vec_r
-        // vec_r.push_back(p);
-
     }
 
     // 计算token
@@ -126,4 +93,28 @@ struct request_msg client::search(std::string w){
 
     // msg.trapdoor=trapdoor;
     return msg;
+}
+
+
+
+struct refresh_msg client::refresh(std::set<std::pair<std::string,std::string>> inverted_index){
+    // 更新计数器
+    this->refresh_cnt+=1;
+
+    // 重置CSC-BF
+    bf.clear();
+
+    // 重新计算布隆过滤器
+    for(std::set<std::pair<std::string,std::string>>::iterator it=inverted_index.begin();it!=inverted_index.end();it++){
+        // 获取w和id
+        std::string w=it->first;
+        std::string id=it->second;
+        // 插入CSC-BF
+        std::vector<int> v=bf.add(w,id,refresh_cnt);
+    }
+
+    // 计算d0
+    struct refresh_msg m=bf.get_d0((unsigned char*)msk.c_str());
+
+    return m;
 }

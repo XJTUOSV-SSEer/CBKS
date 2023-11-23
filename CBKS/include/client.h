@@ -30,6 +30,17 @@ public:
     */
     struct request_msg search(std::string w);
 
+
+    /*
+        refresh，使用新的一组哈希函数重新计算得到布隆过滤器
+
+        param
+            inverted_index：倒排索引。一个集合，集合中元素为pair，即w-id
+        return
+            refresh_msg结构体，包含一个二维数组储存新的d0
+    */
+   struct refresh_msg refresh(std::set<std::pair<std::string,std::string>> inverted_index);
+
 private:
     // 一个CSC-BF对象
     CSC_BloomFilter bf;
@@ -37,8 +48,8 @@ private:
     std::string msk;
     // 对称加密的iv
     std::string iv;
-
-
+    // refresh次数，初始为0
+    int refresh_cnt;
     
 };
 

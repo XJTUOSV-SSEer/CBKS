@@ -83,7 +83,10 @@ public:
     /*
         调用SHA512哈希求摘要。
         param:
-
+            message
+            message_len
+            digest
+            digest_len
     */
     static void SHA512_digest(const unsigned char *message, size_t message_len, 
     unsigned char* digest, unsigned int *digest_len);

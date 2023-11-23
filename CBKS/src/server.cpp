@@ -42,19 +42,14 @@ struct respond_msg server::search(struct request_msg req){
 
                 // 根据token生成CPRF(msk,1||pos)
                 std::string token=std::string((char*)req.token,TOKEN_SIZE);
-                char suffix[CONCAT_SIZE];
-                std::string _s=std::to_string((i+h_w)%len_of_bf);
-                std::string pos=std::string();
-                pos.resize(CONCAT_SIZE-_s.length());
-                std::fill(pos.begin(),pos.end(),'0');
-                pos.append(_s);
-
-                Crypto_Primitives::string2char(pos,suffix);
+                char suffix[CPRF_POS_SIZE];
+                int p=(i+h_w)%len_of_bf;
+                memcpy(suffix,&p,CPRF_POS_SIZE);
 
                 // 储存cprf值
                 char cprf_value[PRF_SIZE];
 
-                CPRF::eval(token, (unsigned char*)suffix, CONCAT_SIZE,(unsigned char*)cprf_value);
+                CPRF::eval(token, (unsigned char*)suffix, CPRF_POS_SIZE,(unsigned char*)cprf_value);
 
                 // 计算alpha
                 char alpha[ALPHA_SIZE];
@@ -123,4 +118,14 @@ struct respond_msg server::search(struct request_msg req){
     struct respond_msg m;
     m.res=result;
     return m;
+}
+
+
+
+void server::refresh(struct refresh_msg m){
+    for(int r=0;r<num_of_repetitions;r++){
+        for(int i=0;i<len_of_bf;i++){
+            (bf_enc.bf_enc[r][i]).d0=(m.d0_new)[r][i];
+        }
+    }
 }

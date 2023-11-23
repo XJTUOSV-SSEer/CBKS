@@ -1,5 +1,16 @@
 #include "../include/load_data.h"
 
+std::set<std::pair<std::string,std::string>> load_data::get_point_dataset(){
+    std::set<std::pair<std::string,std::string>> res;
+    std::string w="a";
+    std::string id="0";
+
+    res.insert(std::make_pair(w,id));
+    return res;
+}
+
+
+
 std::set<std::pair<std::string,std::string>> load_data::get_small_dataset(){
     std::set<std::pair<std::string,std::string>> res;
     

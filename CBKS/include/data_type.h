@@ -21,7 +21,8 @@
 #define IV_SIZE 16      // AES的IV
 #define PRF_SIZE 32     // PRF值32字节
 #define TOKEN_SIZE 32   // token32字节
-#define CPRF_DATA_SIZE 17  // CBKS中，使用CPRF时，CPRF的数据为BF[i]||i，共17字节
+#define CPRF_DATA_SIZE 4  // CBKS中，使用CPRF时，CPRF的数据为BF[i]||i，共17字节
+#define CPRF_POS_SIZE 3   // CBKS中，使用CPRF时，使用3个字节表示位置
 
 
 

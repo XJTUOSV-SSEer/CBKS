@@ -48,4 +48,14 @@ struct respond_msg{
 };
 
 
+
+/*
+    client向server发送的refresh请求
+*/
+struct refresh_msg{
+    // 储存新的d0
+    std::vector<std::vector<std::string>> d0_new;
+};
+
+
 #endif
