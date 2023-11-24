@@ -32,6 +32,17 @@ public:
     static double experiment_build(int num_of_hashs,int num_of_partitions,int len_of_bf,int num_of_repetitions,
                                     std::string filename);
 
+   /*
+        实验4，测试refresh的性能
+    */
+    static double experiment_refresh(int num_of_hashs,int num_of_partitions,int len_of_bf,int num_of_repetitions,
+                                    std::string filename);
+
+    /*
+        实验5，测试准确率
+    */
+    static double experiment_acc(int num_of_hashs,int num_of_partitions,int len_of_bf,int num_of_repetitions,
+                                    std::string filename);                                 
 private:
 
 };

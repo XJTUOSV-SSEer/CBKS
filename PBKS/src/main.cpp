@@ -61,43 +61,43 @@ int main(){
     // std::cout<<t<<std::endl;
 
     // 1.2
-    double t=0;
-    t=experiment::experiment_build(3,100,200000,5,"../../dataset/100K.txt");
-    std::cout<<t<<"ms"<<std::endl;
-    t=experiment::experiment_build(3,100,400000,5,"../../dataset/100K.txt");
-    std::cout<<t<<"ms"<<std::endl;
-    t=experiment::experiment_build(3,100,600000,5,"../../dataset/100K.txt");
-    std::cout<<t<<"ms"<<std::endl;
-    t=experiment::experiment_build(3,100,800000,5,"../../dataset/100K.txt");
-    std::cout<<t<<"ms"<<std::endl;
-    t=experiment::experiment_build(3,100,1000000,5,"../../dataset/100K.txt");
-    std::cout<<t<<"ms"<<std::endl;
+    // double t=0;
+    // t=experiment::experiment_build(3,100,200000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_build(3,100,400000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_build(3,100,600000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_build(3,100,800000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_build(3,100,1000000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
 
     // 1.3
     // double t=0;
-    // t=experiment::experiment_build(3,100,650000,2,"../../dataset/10K.txt");
+    // t=experiment::experiment_build(3,100,650000,2,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,100,650000,3,"../../dataset/10K.txt");
+    // t=experiment::experiment_build(3,100,650000,3,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,100,650000,4,"../../dataset/10K.txt");
+    // t=experiment::experiment_build(3,100,650000,4,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,100,650000,5,"../../dataset/10K.txt");
+    // t=experiment::experiment_build(3,100,650000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,100,650000,6,"../../dataset/10K.txt");
+    // t=experiment::experiment_build(3,100,650000,6,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
 
     // 1.4
-    // double t=0;
-    // t=experiment::experiment_build(3,100,650000,5,"../../dataset/10K.txt");
-    // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,200,650000,5,"../../dataset/10K.txt");
-    // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,300,650000,5,"../../dataset/10K.txt");
-    // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,400,650000,5,"../../dataset/10K.txt");
-    // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_build(3,500,650000,5,"../../dataset/10K.txt");
-    // std::cout<<t<<"ms"<<std::endl;
+    double t=0;
+    t=experiment::experiment_build(3,100,650000,5,"../../dataset/100K.txt");
+    std::cout<<t<<"ms"<<std::endl;
+    t=experiment::experiment_build(3,200,650000,5,"../../dataset/100K.txt");
+    std::cout<<t<<"ms"<<std::endl;
+    t=experiment::experiment_build(3,300,650000,5,"../../dataset/100K.txt");
+    std::cout<<t<<"ms"<<std::endl;
+    t=experiment::experiment_build(3,400,650000,5,"../../dataset/100K.txt");
+    std::cout<<t<<"ms"<<std::endl;
+    t=experiment::experiment_build(3,500,650000,5,"../../dataset/100K.txt");
+    std::cout<<t<<"ms"<<std::endl;
 
 
     // 实验2
@@ -155,16 +155,104 @@ int main(){
     // t=experiment::experiment_search(3,100,650000,5,"../../dataset/200K.txt");
     // std::cout<<t<<"ms"<<std::endl;
 
-    // double t=experiment::experiment_search(3,100,650000,5,"../../dataset/10K.txt");
+    // 3.2
+    // double t=0;
+    // t=experiment::experiment_search(3,100,200000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_search(3,1000,650000,5,"../../dataset/50K.txt");
+    // t=experiment::experiment_search(3,100,400000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_search(3,1000,650000,5,"../../dataset/100K.txt");
+    // t=experiment::experiment_search(3,100,600000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_search(3,1000,650000,5,"../../dataset/150K.txt");
+    // t=experiment::experiment_search(3,100,800000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
-    // t=experiment::experiment_search(3,1000,650000,5,"../../dataset/200K.txt");
+    // t=experiment::experiment_search(3,100,1000000,5,"../../dataset/100K.txt");
     // std::cout<<t<<"ms"<<std::endl;
+
+
+    // 3.3
+    // double t=0;
+    // t=experiment::experiment_search(3,100,650000,2,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,100,650000,3,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,100,650000,4,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,100,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,100,650000,6,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+
+
+    // 3.4
+    // double t=0;
+    // t=experiment::experiment_search(3,100,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,200,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,300,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,400,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+    // t=experiment::experiment_search(3,500,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<"ms"<<std::endl;
+
+
+    // 实验5
+    // 5.1
+    // double t=0;
+    // t=experiment::experiment_acc(3,1000,650000,2,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1000,650000,3,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1000,650000,4,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1000,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1000,650000,6,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+
+    // 5.1
+    // double t=0;
+    // t=experiment::experiment_acc(3,100,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,200,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,300,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,400,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,500,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,600,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,700,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,800,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,900,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1000,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1100,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1200,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1300,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1400,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1500,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1600,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1700,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1800,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,1900,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
+    // t=experiment::experiment_acc(3,2000,650000,5,"../../dataset/100K.txt");
+    // std::cout<<t<<std::endl;
 
     
 }
