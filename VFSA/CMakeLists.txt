@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(my_test VERSION 0.1.0 LANGUAGES C CXX)
+
+include(CTest)
+enable_testing()
+
+include_directories(./include/)
+link_directories("/usr/lib/x86-64-linux-gnu")
+add_executable(mytest ./src/test.cpp ./src/BigInteger.cpp)
+
+target_link_libraries(mytest libcrypto.so)   
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
