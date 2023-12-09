@@ -165,9 +165,11 @@ public:
 
 
     /*
-        模幂运算 r=(a^p) mod m
+        模幂运算 r=(a^p) mod m。
+
+        注意，若指数p为负数，那么计算法则为：先求a的逆元a_inv，然后计算(a_inv)^(-p) mod m
     */
-    static void mod_exp(BigInteger& r,BigInteger& a,const BigInteger& p,const BigInteger& m);
+    static void mod_exp(BigInteger& r,BigInteger& a,BigInteger& p,const BigInteger& m);
 
 
     /*

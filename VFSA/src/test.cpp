@@ -85,7 +85,7 @@ int main(void){
 
     // 求逆元
     BigInteger::mod_inverse(c,a,m);
-    std::cout<<c.to_string()<<std::endl;
+    std::cout<<"inv_a:"<<c.to_string()<<std::endl;
 
     // 最大公因数
     a.reset(966);
@@ -102,4 +102,20 @@ int main(void){
     std::cout<<x.to_string()<<" "<<y.to_string()<<std::endl;
 
 
+    // 生成素数
+    BigInteger::generate_prime(c,256,1);
+    std::cout<<c.to_string()<<std::endl;
+
+
+    // 素性测试
+    std::cout<<BigInteger::is_prime(c)<<std::endl;
+
+
+    // 模幂，幂为负数
+    a.reset("1381723128379128379137");
+    b.reset("1943872381928310212938");
+
+    p.reset("-20");
+    BigInteger::mod_exp(c,a,p,m);
+    std::cout<<c.to_string()<<std::endl;
 }
