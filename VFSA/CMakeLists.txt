@@ -5,10 +5,10 @@ include(CTest)
 enable_testing()
 
 include_directories(./include/)
-link_directories("/usr/lib/x86-64-linux-gnu")
-add_executable(mytest ./src/test.cpp ./src/BigInteger.cpp)
+link_directories("/usr/lib/x86-64-linux-gnu" "/usr/local/lib")
+add_executable(mytest ./src/Bilinear_Pairing.cpp ./src/BigInteger.cpp)
 
-target_link_libraries(mytest libcrypto.so)   
+target_link_libraries(mytest libcrypto.so libpbc.so libgmp.so)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
