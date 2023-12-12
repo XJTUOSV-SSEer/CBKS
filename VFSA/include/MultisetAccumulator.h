@@ -2,7 +2,7 @@
 #define MULTISETACCUMULATOR_H
 
 #include <pbc/pbc.h>
-
+#include <set>
 
 class MultisetAccumulator{
 public:
@@ -10,6 +10,12 @@ public:
         构造函数，构造一个双线性对
     */
     MultisetAccumulator();
+
+    /*
+        计算acc值
+    */
+    void Acc(element_t& acc,std::set<std::string> tag_set);
+    
     
 
     

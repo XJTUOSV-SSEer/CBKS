@@ -33,6 +33,16 @@ public:
 
 
     /*
+        将二进制的小端序字节数组转换为BIGNUM
+
+        param:
+            s：字节数组
+            len：字节数组的长度
+    */
+    BigInteger(unsigned char* s,int len);
+
+
+    /*
         使用字符串更新BIGNUM，使之修改为新的值
     */
     void reset(std::string s);
@@ -208,6 +218,16 @@ public:
             若是质数，返回true；否则返回false
     */
     static bool is_prime(const BigInteger& p);
+
+
+    /*
+        将字符串s转换为一个素数
+        具体操作为先v=Hash(s)。若v不是素数，那么递增v直到得到一个素数
+
+        param:
+            s：字符串
+    */
+    static void generate_prime(BigInteger& ret,std::string s);
 
 private:
     BIGNUM *bi;

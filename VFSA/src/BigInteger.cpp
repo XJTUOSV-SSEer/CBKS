@@ -1,4 +1,5 @@
 #include "../include/BigInteger.h"
+#include "../include/Crypto_Primitives.h"
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -27,6 +28,15 @@ BigInteger::BigInteger(BN_ULONG x)
         std::cout << "convert error" << std::endl;
     }
 }
+
+BigInteger::BigInteger(unsigned char* s,int len){
+    this->bi = BN_new();
+    BIGNUM* flag=BN_lebin2bn(s,len,this->bi);
+    if(flag==NULL){
+        std::cout << "convert error" << std::endl;
+    }
+}
+
 
 void BigInteger::reset(std::string s)
 {
@@ -434,4 +444,37 @@ bool BigInteger::is_prime(const BigInteger &p)
     {
         return false;
     }
+}
+
+
+
+void BigInteger::generate_prime(BigInteger& ret,std::string s){
+    int len=s.length();
+    char* c=new char[len];
+
+    Crypto_Primitives::string2char(s,c);
+
+    // 调用SHA256求哈希
+    char digest[32];
+    int digest_len;
+    Crypto_Primitives::SHA256_digest((unsigned char*)c,len,(unsigned char*)digest,(unsigned int*)&digest_len);
+
+    // 将digest转换为BigInteger对象
+    BigInteger num((unsigned char*)digest,32);
+    BigInteger zero(0);
+    if(BigInteger::cmp(num,zero)==-1){
+        BigInteger tmp("-1");
+        BigInteger::mul(num,num,tmp);
+    }
+
+    // 素性测试
+    BigInteger one(1);
+    while(!is_prime(num)){
+        BigInteger::add(num,num,one);
+    }
+
+    std::string str=num.to_string();
+    ret.reset(str);
+
+    delete c;    
 }
