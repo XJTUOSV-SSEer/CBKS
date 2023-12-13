@@ -1,10 +1,56 @@
 #include "../include/BigInteger.h"
-#include "../include/Twin_BloomFilter.h"
+// #include "../include/Twin_BloomFilter.h"
+// #include "../include/MultisetAccumulator.h"
 #include <iostream>
 #include <pbc/pbc.h>
 
 
 
+
+// int main(void){
+//     MultisetAccumulator msa;
+//     std::set<std::string> w_set1;
+//     std::set<std::string> w_set2;
+//     w_set1.insert("z");
+//     w_set1.insert("h");
+//     w_set2.insert("j");
+//     w_set2.insert("y");
+
+
+
+//     // std::cout<<msa.get_P(w_set1)<<std::endl;
+//     // std::cout<<msa.get_P(w_set2)<<std::endl;
+
+//     std::string PT1=msa.get_P(w_set1);
+//     std::string PT2=msa.get_P(w_set2);
+
+//     BigInteger a(PT1);
+//     BigInteger b(PT2);
+
+//     std::cout<<BigInteger::is_prime(a)<<" "<<BigInteger::is_prime(b)<<std::endl;
+
+//     struct Disjoint_Proof pi=msa.Prove_Disjoint(PT1,PT2);
+//     std::cout<<pi.first<<std::endl;
+//     std::cout<<pi.second<<std::endl;
+// }
+
+
+// int main(void){
+//     MultisetAccumulator msa;
+//     std::set<std::string> w_set;
+//     w_set.insert("z");
+//     w_set.insert("h");
+//     w_set.insert("g");
+//     for(int i=0;i<10;i++){
+//         std::string acc=msa.Acc(w_set);
+//         std::cout<<acc<<std::endl;
+//     }    
+// }
+
+
+// int main(void){
+//     std::cout<<"hello"<<std::endl;
+// }
 
 int main(void){
     std::string s="zhg";
@@ -151,6 +197,8 @@ int main(void){
 
 
 // int main(void){
+//     BigInteger n;
+
 //     // 使用较小的正整数构造
 //     BigInteger x(1281728);
 //     std::cout<<x.to_string()<<std::endl;
@@ -266,4 +314,17 @@ int main(void){
 //     p.reset("-20");
 //     BigInteger::mod_exp(c,a,p,m);
 //     std::cout<<c.to_string()<<std::endl;
+// }
+
+
+// int main(void){
+//     BigInteger n;
+//     std::cout<<sizeof(n)<<std::endl;
+//     std::cout<<n.to_string()<<std::endl;
+
+//     BigInteger m("1");
+//     std::cout<<m.to_string()<<std::endl;
+
+
+//     return 0;
 // }

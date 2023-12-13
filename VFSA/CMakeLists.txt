@@ -7,7 +7,7 @@ enable_testing()
 include_directories(./include/)
 link_directories("/usr/lib/x86-64-linux-gnu" "/usr/local/lib")
 add_executable(mytest ./src/test.cpp ./src/BigInteger.cpp ./src/Crypto_Primitives.cpp ./src/MurmurHash3.cpp
-                ./src/Twin_BloomFilter.cpp)
+                ./src/MultisetAccumulator.cpp ./src/Twin_BloomFilter.cpp)
 
 target_link_libraries(mytest libcrypto.so libpbc.so libgmp.so)
 

@@ -476,5 +476,5 @@ void BigInteger::generate_prime(BigInteger& ret,std::string s){
     std::string str=num.to_string();
     ret.reset(str);
 
-    delete c;    
+    delete[] c;
 }
