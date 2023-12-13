@@ -1,6 +1,6 @@
 #include "../include/BigInteger.h"
 // #include "../include/Twin_BloomFilter.h"
-// #include "../include/MultisetAccumulator.h"
+#include "../include/MultisetAccumulator.h"
 #include <iostream>
 #include <pbc/pbc.h>
 
@@ -12,14 +12,14 @@
 //     std::set<std::string> w_set1;
 //     std::set<std::string> w_set2;
 //     w_set1.insert("z");
-//     w_set1.insert("h");
+//     // w_set1.insert("h");
 //     w_set2.insert("j");
-//     w_set2.insert("y");
+//     // w_set2.insert("y");
 
 
 
-//     // std::cout<<msa.get_P(w_set1)<<std::endl;
-//     // std::cout<<msa.get_P(w_set2)<<std::endl;
+//     std::cout<<msa.get_P(w_set1)<<std::endl;
+//     std::cout<<msa.get_P(w_set2)<<std::endl;
 
 //     std::string PT1=msa.get_P(w_set1);
 //     std::string PT2=msa.get_P(w_set2);
@@ -32,6 +32,12 @@
 //     struct Disjoint_Proof pi=msa.Prove_Disjoint(PT1,PT2);
 //     std::cout<<pi.first<<std::endl;
 //     std::cout<<pi.second<<std::endl;
+
+//     BigInteger tmp1("696994188446543058915253460996788302409068264593");
+//     std::cout<<BigInteger::is_prime(tmp1)<<std::endl;
+//     BigInteger tmp2("417439460856519821358147611154138531987922545017");
+//     std::cout<<BigInteger::is_prime(tmp2)<<std::endl;
+
 // }
 
 
@@ -44,25 +50,30 @@
 //     for(int i=0;i<10;i++){
 //         std::string acc=msa.Acc(w_set);
 //         std::cout<<acc<<std::endl;
-//     }    
+//     }
 // }
+
+// int main(void){
+//     BigInteger n;
+// }
+
 
 
 // int main(void){
 //     std::cout<<"hello"<<std::endl;
 // }
 
-int main(void){
-    std::string s="zhg";
-    BigInteger n;
-    BigInteger::generate_prime(n,s);
+// int main(void){
+//     std::string s="zhg";
+//     BigInteger n;
+//     BigInteger::generate_prime(n,s);
 
-    std::cout<<n.to_string()<<std::endl;
-    std::cout<<BigInteger::is_prime(n)<<std::endl;
-    std::cout<<n.estimate_dec_len()<<std::endl;
+//     std::cout<<n.to_string()<<std::endl;
+//     std::cout<<BigInteger::is_prime(n)<<std::endl;
+//     std::cout<<n.estimate_dec_len()<<std::endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 // int main(void){
@@ -188,6 +199,18 @@ int main(void){
 //     element_init_GT(tmp5,pairing);
 //     element_set_str(tmp5,s,10);
 //     element_printf("%B\n", tmp5);
+
+
+//     // 
+//     element_t tmp6;
+//     element_init_Zr(tmp6,pairing);
+//     std::string str("182937912783912839128391283192381928319238102983012938102893019283012839012830198301238012983019830");
+//     element_set_str(tmp6,str.c_str(),10);
+//     std::cout<<"str:"<<str<<std::endl;
+//     element_printf("tmp6:%B\n",tmp6);
+//     element_printf("pk:%B\n",public_key);
+//     element_printf("sk:%B\n",secret_key);
+    
 
 //     return 0;
 // }
@@ -328,3 +351,84 @@ int main(void){
 
 //     return 0;
 // }
+
+
+
+// int main(void)
+// {
+//     // 初始化双线性对
+//     pairing_t pairing;
+
+//     // 从文件中读取双线性对的参数
+//     std::string filename = "../src/a.param";
+//     FILE *fp;
+//     fp = fopen((char *)filename.c_str(), "r");
+//     if (!fp)
+//     {
+//         pbc_die("error opening %s", filename.c_str());
+//     }
+
+//     char param[1024];
+//     size_t count = fread(param, 1, 1024, fp);
+//     if (!count)
+//         pbc_die("input error");
+
+//     // 使用参数初始化双线性对
+//     pairing_init_set_buf(pairing, param, count);
+
+//     element_t g;
+//     element_t public_key;
+//     element_t secret_key;
+
+//     element_init_G2(g, pairing);
+//     element_init_G2(public_key, pairing);
+//     element_init_Zr(secret_key, pairing);
+
+//     // 生成g
+//     element_random(g);
+//     element_printf("g:%B\n",g);
+//     // 生成私钥
+//     element_random(secret_key);
+//     element_printf("sk:%B\n",secret_key);
+//     // 计算公钥
+//     element_pow_zn(public_key,g,secret_key);
+//     element_printf("pk:%B\n",public_key);
+
+
+//     // 生成x,y
+//     element_t x,y;
+//     element_init_Zr(x,pairing);
+//     element_random(x);
+//     element_init_Zr(y,pairing);
+//     element_random(y);
+//     element_printf("x:%B\n",x);
+//     element_printf("y:%B\n",y);
+
+//     // 生成a,b
+//     element_t a,b;
+//     element_init_G1(a,pairing);
+//     element_random(a);
+//     element_init_G2(b,pairing);
+//     element_random(b);
+//     element_printf("a:%B\n",a);
+//     element_printf("b:%B\n",b);
+
+//     // a^x,b^y
+//     element_t tmp1;
+//     element_init_G1(tmp1,pairing);
+//     // _zn表示是在循环群上的幂运算
+//     element_pow_zn(tmp1,a,x);
+//     element_t tmp2;
+//     element_init_G2(tmp2,pairing);
+//     element_pow_zn(tmp2,b,y);
+
+//     element_printf("a^x:%B\n",tmp1);
+//     element_printf("b^y:%B\n",tmp2);
+// }
+
+
+
+int main(void){
+
+    MultisetAccumulator msa;
+}
