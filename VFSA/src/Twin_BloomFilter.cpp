@@ -142,3 +142,16 @@ int Twin_BloomFilter::get_chosen_cell(char* digest, int loc){
 bool Twin_BloomFilter::get_value(int loc,int chosen_cell){
     return twin_bf[chosen_cell][loc];
 }
+
+
+std::string Twin_BloomFilter::to_string(){
+    std::string ret="";
+    for(int i=0;i<len_of_bf;i++){
+        for(int j=0;j<2;j++){
+            std::string s=std::to_string(twin_bf[j][i]);
+            ret.append(s);
+        }
+    }
+
+    return ret;
+}

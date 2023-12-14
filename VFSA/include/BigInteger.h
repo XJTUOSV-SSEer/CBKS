@@ -189,7 +189,7 @@ public:
 
 
     /*
-        使用拓展欧几里得定理计算方程 ax+by=gcd(a,b)
+        给定a,b 使用拓展欧几里得定理计算方程 ax+by=gcd(a,b)
     */
     static void xgcd(BigInteger& a,BigInteger& b,BigInteger& x,BigInteger& y);
 

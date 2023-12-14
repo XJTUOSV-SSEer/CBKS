@@ -66,6 +66,12 @@ public:
         获取第loc个位置，chosen_cell处的值
     */
     bool get_value(int loc,int chosen_cell);
+
+
+    /*
+        将twin_BF数组转换为01字符串，用于计算哈希
+    */
+    std::string to_string();
     
 
 private:

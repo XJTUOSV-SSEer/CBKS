@@ -1,5 +1,5 @@
 #include "../include/BigInteger.h"
-// #include "../include/Twin_BloomFilter.h"
+#include "../include/Twin_BloomFilter.h"
 #include "../include/MultisetAccumulator.h"
 #include <iostream>
 #include <pbc/pbc.h>
@@ -428,7 +428,41 @@
 
 
 
-int main(void){
+// int main(void){
 
-    MultisetAccumulator msa;
+//     MultisetAccumulator msa;
+//     std::set<std::string> w_set;
+//     w_set.insert("zhg");
+//     w_set.insert("jyz");
+//     w_set.insert("abc");
+
+//     // std::cout<<msa.get_acc(w_set)<<std::endl;
+//     std::string acc=msa.get_acc(w_set);
+//     // std::cout<<"x_p:"<<msa.get_product(w_set)<<std::endl;
+
+//     std::string product=msa.get_product(w_set);
+//     struct Nonmembership_Proof pi = msa.proove_nonmembership(product,"123");
+//     // std::cout<<pi.a<<std::endl<<pi.d<<std::endl;
+
+//     bool result=msa.verify_nonmembership(acc,pi,"123");
+//     std::cout<<result<<std::endl;
+
+//     pi = msa.proove_nonmembership(product,"129381928390");
+//     result=msa.verify_nonmembership(acc,pi,"129381928390");
+//     std::cout<<result<<std::endl;
+    
+//     BigInteger a(5);
+//     BigInteger b(10);
+//     BigInteger x,y;
+//     BigInteger::xgcd(a,b,x,y);
+//     std::cout<<"x:"<<x.to_string()<<std::endl<<"y:"<<y.to_string()<<std::endl;
+// }
+
+
+
+int main(void){
+    Twin_BloomFilter tbf(5,3);
+    tbf.add("123");
+    std::cout<<tbf.to_string()<<std::endl;
+
 }
