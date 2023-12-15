@@ -72,6 +72,17 @@ public:
         将twin_BF数组转换为01字符串，用于计算哈希
     */
     std::string to_string();
+
+
+    /*
+        验证关键字是否存在于TBF中
+
+        param:
+            w:
+        return
+            若存在，返回true
+    */
+    bool verify(std::string w);
     
 
 private:

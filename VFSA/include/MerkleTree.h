@@ -2,14 +2,19 @@
 #define MERKLETREE_H
 
 #include <vector>
+#include<queue>
 #include "Twin_BloomFilter.h"
 #include "Crypto_Primitives.h"
+#include "MultisetAccumulator.h"
 #include "data_type.h"
+#include "msg.h"
 
 /*
     merkle树的结点
 */
 struct node{
+    // 文件名。叶结点会填充该字段
+    std::string f_id;
     // 表示是否为叶结点
     bool is_leaf;
     // TBF
@@ -96,8 +101,7 @@ struct node{
 };
 
 
-
-
+ 
 
 
 
@@ -123,11 +127,71 @@ public:
 
     // MerkleTree(int len_of_bf,int num_of_hashs);
 
+    MerkleTree(int len_of_bf,int num_of_hashs,MultisetAccumulator msa);
+
+
+    /*
+        根据给定的数据，在merkle树中进行查询
+
+        param:
+            x:关键字对应的素数
+            locs:BF的k个位置
+        return:
+            struct query_result
+    */
+    struct query_result query(std::string& x,std::vector<int>& locs);
+
+
+    /*
+        给定一棵proof_node组成的树，进行merkle proove
+        使用递归计算即可
+
+        param:
+            query_result: 树
+        return:
+
+    */
+    static std::string merkle_proove(struct query_result);
+    
+
 private:
     /*
         给定一组叶结点，构建一颗子树，将子树的root加入tree并返回在数组中的索引
+
+        param:
+            一个队列，储存当前给定的叶结点在tree数组中的下标
+
+        return:
+            子树的root_id
     */
-    int sub_tree(std::set<int> leaf_set);
+    int sub_tree(std::queue<int> leaf_set);
+
+    int len_of_bf;
+
+    int num_of_hashs;
+
+    MultisetAccumulator msa;
+
+
+    /*
+        通过DFS的方式查询关键字，并对所有查询路径上的结点，生成一个proof_node结点加入res数组。
+        返回生成的proof_node结点在res数组中的下标
+
+        param:
+            id: 当前merkle树结点在tree数组中的下标
+            x: 关键字对应的素数
+    */
+    int DFS_query(int id,std::string& x,std::vector<int>& locs,std::vector<struct proof_node>& res);
+
+
+    /*
+        给定下标为id的结点，计算该结点的digest并储存在结点中
+
+        param:
+            id:下标
+            res:一个数组，储存树的结点
+    */
+    static void get_root_hash(int id,std::vector<struct proof_node>& res);
     
 };
 

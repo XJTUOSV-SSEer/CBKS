@@ -127,6 +127,33 @@ struct Nonmembership_Proof MultisetAccumulator::proove_nonmembership(std::string
 
 
 
+struct Nonmembership_Proof MultisetAccumulator::proove_nonmembership_prime(std::string product,std::string x_s){
+    BigInteger x(x_s);
+    // 根据拓展欧几里得定理计算a*product+b*x=1的解a,b
+    BigInteger a,b;
+    BigInteger x_p(product);
+    BigInteger::xgcd(x_p,x,a,b);
+
+    // std::cout<<"a:"<<a.to_string()<<" b:"<<b.to_string()<<std::endl;
+
+    // 计算证明pi
+    struct Nonmembership_Proof pi;
+    pi.a=a.to_string();
+
+    BigInteger generator(this->g);
+    BigInteger n(this->N);
+
+    // d=g^b mod N，使用欧拉降幂公式加速
+    BigInteger d;
+    // BigInteger::mod_exp(d,generator,b,n);
+    // pi.d=d.to_string();
+    pi.d=mod_exp_Euler(generator.to_string(),b.to_string());    
+
+    return pi;
+}
+
+
+
 bool MultisetAccumulator::verify_nonmembership(std::string acc,struct Nonmembership_Proof pi,std::string w){
     BigInteger bi_N(this->N);
     BigInteger bi_g(this->g);
@@ -184,4 +211,11 @@ std::string MultisetAccumulator::mod_exp_Euler(std::string a,std::string x){
     BigInteger::mod_exp(ret,bi_a,bi_x,bi_N);
 
     return ret.to_string();
+}
+
+
+
+std::string MultisetAccumulator::get_acc(std::string x_p){
+    // 计算acc=g^product mod N
+    return mod_exp_Euler(std::to_string(this->g),x_p);
 }

@@ -155,3 +155,19 @@ std::string Twin_BloomFilter::to_string(){
 
     return ret;
 }
+
+
+
+bool Twin_BloomFilter::verify(std::string w){
+    for(int i=0;i<num_of_hashs;i++){
+        // 计算w的位置loc和chosen cell
+        int loc=get_h_i(w,i);
+        int cell=get_chosen_cell(loc);
+        bool value=get_value(loc,cell);
+        if(!value){
+            return false;
+        }
+    }
+
+    return true;
+}

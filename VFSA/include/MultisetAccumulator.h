@@ -38,6 +38,18 @@ public:
 
 
     /*
+        对于给定的x_p，生成ACC
+
+        param:
+            x_p: 集合对应的product
+
+        return:
+            acc的十进制字符串形式
+    */
+    std::string get_acc(std::string x_p);
+
+
+    /*
         对于给定的关键字集合，计算对应素数的乘积
 
         param:
@@ -57,6 +69,17 @@ public:
             x:关键字的明文
     */
     struct Nonmembership_Proof proove_nonmembership(std::string product,std::string w);
+
+
+
+    /*
+        证明某关键字x不存在于某个集合(不存在证明)
+
+        param:
+            product:集合对应素数的乘积，十进制字符串形式
+            x:关键字对应的素数
+    */
+    struct Nonmembership_Proof proove_nonmembership_prime(std::string product,std::string x);
 
 
     /*

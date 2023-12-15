@@ -460,9 +460,9 @@
 
 
 
-int main(void){
-    Twin_BloomFilter tbf(5,3);
-    tbf.add("123");
-    std::cout<<tbf.to_string()<<std::endl;
+// int main(void){
+//     Twin_BloomFilter tbf(5,3);
+//     tbf.add("123");
+//     std::cout<<tbf.to_string()<<std::endl;
 
-}
+// }
