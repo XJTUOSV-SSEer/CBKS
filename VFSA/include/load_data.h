@@ -19,9 +19,17 @@ public:
 
 
     /*
-        从文件读取数据集
+        从文件读取数据集。每个文件id对应w_num个关键字
     */
-    static std::set<std::pair<std::string,std::string>> get_dataset(std::string filename);
+    static std::vector<std::pair<std::string,std::set<std::string>>> get_dataset(std::string filename,int w_num,int file_num);
+
+
+    /*
+        随机生成file_num个文件，每个文件包含w_num个关键字，并将数据储存在filename文件中
+        
+
+    */
+    static void generate_data(int file_num,int w_num,std::string filename);
 };
 
 #endif

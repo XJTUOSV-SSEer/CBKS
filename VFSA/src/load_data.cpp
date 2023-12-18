@@ -56,19 +56,69 @@ std::vector<std::pair<std::string,std::set<std::string>>> load_data::get_small_d
 
 
 
-std::set<std::pair<std::string,std::string>> load_data::get_dataset(std::string filename){
-    std::set<std::pair<std::string,std::string>> dataset;
+std::vector<std::pair<std::string,std::set<std::string>>> load_data::get_dataset(std::string filename,int w_num,int file_num){
+    // 数据集
+    std::vector<std::pair<std::string,std::set<std::string>>> dataset;
 
     FILE* fp=fopen((char*)filename.c_str(),"r");
     if(fp==NULL){
         std::cout<<"open file failed"<<std::endl;
     }
+    std::string f_id;
     int w;
-    int id;
-    while(fscanf(fp,"%d %d",&w,&id)!=EOF){
-        dataset.insert(std::make_pair(std::to_string(w),std::to_string(id)));
+
+    for(int i=0;i<file_num;i++){
+        char buf[32];
+        fscanf(fp,"%s",buf);
+
+        // 文件id
+        f_id=std::string(buf);
+
+        std::set<std::string> w_set;
+        // 读取关键字集合
+        for(int j=0;j<w_num;j++){
+            fscanf(fp,"%d",&w);
+            w_set.insert(std::to_string(w));
+        }
+
+        // 加入数据集
+        dataset.push_back(std::make_pair(f_id,w_set));
     }
 
     fclose(fp);
     return dataset;
+}
+
+
+
+
+void load_data::generate_data(int file_num,int w_num,std::string filename){
+    // 打开文件
+    FILE* fp=fopen((char*)filename.c_str(),"w");
+    if(fp==NULL){
+        std::cout<<"open file failed"<<std::endl;
+    }
+
+
+    for(int i=0;i<file_num;i++){
+        // 文件id
+        std::string f_id="file"+std::to_string(i);
+        std::set<int> w_set;
+
+        fprintf(fp,"%s\n",f_id.c_str());
+
+        // 关键字集合
+        for(int j=0;j<w_num;j++){
+            // 随机生成一个关键字
+            int w=rand()%512;
+            while(w_set.find(w)!=w_set.end()){
+                w=rand()%512;
+            }
+            w_set.insert(w);
+
+            fprintf(fp,"%d\n",w);
+        }
+    }
+
+    fclose(fp);
 }
