@@ -91,6 +91,45 @@ CBKS/
 │       ├── MurmurHash3.cpp			// the Murmurhash3
 │       ├── server.cpp				// the server with abilities of Search
 │       └── test_func.cpp
+├── VFSA
+│   ├── CMakeLists.txt				// CMake file
+│   ├── dataset						// dataset for experiment
+│   │   ├── 100K.txt				
+│   │   ├── 10K.txt
+│   │   ├── 150K.txt
+│   │   ├── 15K.txt
+│   │   ├── 1K.txt
+│   │   ├── 200K.txt
+│   │   ├── 20K.txt
+│   │   ├── 50K.txt
+│   │   └── 5K.txt
+│   ├── include
+│   │   ├── BigInteger.h
+│   │   ├── client.h
+│   │   ├── Crypto_Primitives.h
+│   │   ├── data_type.h
+│   │   ├── experiment.h
+│   │   ├── load_data.h
+│   │   ├── MerkleTree.h
+│   │   ├── msg.h
+│   │   ├── MultisetAccumulator.h
+│   │   ├── MurmurHash3.h
+│   │   ├── server.h
+│   │   └── Twin_BloomFilter.h
+│   └── src
+│       ├── a.param
+│       ├── BigInteger.cpp				// some methods using for big integer operation
+│       ├── client.cpp					// the client with abilities of IndexGen, TokenGen and verify query 											results
+│       ├── Crypto_Primitives.cpp		// Some Cryptography primitives, such as AES256, PRF, SHA512, et al.
+│       ├── experiment.cpp				// code for several experiments
+│       ├── load_data.cpp				// load multi-map from dataset files
+│       ├── main.cpp					
+│       ├── MerkleTree.cpp				// a Merkle tree class with corresponding methods, such as construct 											and generate merkle proof
+│       ├── MultisetAccumulator.cpp		// a RSA MultisetAccumulator
+│       ├── MurmurHash3.cpp				// the Murmurhash3
+│       ├── server.cpp					// the server with abilities of Search
+│       ├── test.cpp
+│       └── Twin_BloomFilter.cpp		// a Twin Bloom filter
 └── README.md							// Introduction
 ~~~
 
@@ -140,6 +179,17 @@ sudo cmake --build .
 
 ~~~bash
 cd PBKS+
+sudo mkdir build
+cd build
+sudo cmake ..
+sudo cmake --build .
+./mytest		# run the code
+~~~
+
+#### Build VFSA
+
+~~~bash
+cd VFSA
 sudo mkdir build
 cd build
 sudo cmake ..
