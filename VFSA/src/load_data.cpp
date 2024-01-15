@@ -110,9 +110,9 @@ void load_data::generate_data(int file_num,int w_num,std::string filename){
         // 关键字集合
         for(int j=0;j<w_num;j++){
             // 随机生成一个关键字
-            int w=rand()%512;
+            int w=rand()%2000;
             while(w_set.find(w)!=w_set.end()){
-                w=rand()%512;
+                w=rand()%2000;
             }
             w_set.insert(w);
 

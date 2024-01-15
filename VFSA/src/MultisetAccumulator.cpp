@@ -25,7 +25,8 @@ MultisetAccumulator::MultisetAccumulator(){
     N="92540059651567610024194486489383252364422717166295481558146780071654243501741";
 
     // g=65537
-    g=65537;
+    // g=65537;
+    g=13;
 
 
     // std::cout<<P<<std::endl<<Q<<std::endl<<N<<std::endl;
